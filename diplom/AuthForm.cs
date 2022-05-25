@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Data.SqlClient;
-
+ // HELLO
 namespace diplom
 {
     public partial class AuthForm : MaterialForm
@@ -38,7 +38,7 @@ namespace diplom
         {
             if (textBox1.Text == "")
             {
-                MessageBox.Show("Введите логин!");
+                MessageBox.Show("Введите ### логин!");
             }
             if (textBox2.Text == "")
             {
