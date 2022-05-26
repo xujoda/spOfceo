@@ -16,6 +16,8 @@ namespace diplom
     {
         int countSlides = 0;
         int activeSlide = 0;
+        List<Panel> pSlides = new List<Panel>();
+
         public Presentation()
         {
             InitializeComponent();
@@ -45,21 +47,24 @@ namespace diplom
         {
             if (comboBox1.SelectedIndex == 0)
             {
-                countSlides++;
-                listView1.Items.Add("Slide " + countSlides);
-                comboBox1.SelectedItem = null;
-                comboBox1.Text = "Слайд";
-                Panel pSlide = new Panel()
-                {
-                    Name = "pSlide" + Convert.ToString(countSlides),
-                    BackColor = Color.White,
-                    Dock = DockStyle.Fill,
-                    
-                    Parent = splitContainer3.Panel2,
-                };
-                //splitContainer3.Panel2.Controls.Add(pSlide);
-                int i = 0;
+                newSlide();
             }
+        }
+        
+        public void newSlide()
+        {
+            countSlides++;
+            listView1.Items.Add("Slide " + countSlides);
+            comboBox1.SelectedItem = null;
+            comboBox1.Text = "Слайд";
+            Panel pSlide = new Panel()
+            {
+                Name = "pSlide" + Convert.ToString(countSlides),
+                BackColor = Color.Red,
+                Dock = DockStyle.Fill,
+                Parent = splitContainer3.Panel2,
+            };
+            pSlides.Add(pSlide);
         }
 
         private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
@@ -69,12 +74,15 @@ namespace diplom
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            activeSlide = listView1.SelectedIndices[0];
-            splitContainer3.Panel2.Controls["pSlide" + activeSlide++].Visible = true;
-            for (int i = 0; i < countSlides; i++)
+            for (int i = 0; i < listView1.Items.Count; i++)
             {
-                if (listView1.Items[i].Index != activeSlide)
-                    splitContainer3.Panel2.Controls["pSlide" + i].Visible = false;
+                if (listView1.Items[i].Checked == true)
+                {
+                    activeSlide = i;
+                    pSlides[activeSlide].Visible = true;
+                    Console.WriteLine("### " + activeSlide + " $$$ " + pSlides[i].Name);
+                }
+                else pSlides[i].Visible = false;
             }
         }
 
@@ -83,7 +91,8 @@ namespace diplom
             RichTextBox richTextBox = new RichTextBox()
             {
                 Name = "richTextBox" + Convert.ToString(activeSlide),
-                Text = "Ваш текст",
+                Text = "Текущий слайд: " + activeSlide,
+                Parent = pSlides[activeSlide],
             };
             //splitContainer3.Panel2.Controls["pSlide" + activeSlide].Controls.Add(richTextBox);
             //Controls["pSlide" + activeSlide].Controls.Add(Controls["richTextBox" + activeSlide]);
