@@ -14,7 +14,8 @@ namespace diplom
 {
     public partial class Presentation : MaterialForm
     {
-        int countSlides = 1;
+        int countSlides = 0;
+        int activeSlide = 0;
         public Presentation()
         {
             InitializeComponent();
@@ -27,14 +28,6 @@ namespace diplom
                 TextShade.WHITE
             );
         }
-
-
-
-
-
-
-
-
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
@@ -56,12 +49,44 @@ namespace diplom
                 listView1.Items.Add("Slide " + countSlides);
                 comboBox1.SelectedItem = null;
                 comboBox1.Text = "Слайд";
+                Panel pSlide = new Panel()
+                {
+                    Name = "pSlide" + Convert.ToString(countSlides),
+                    BackColor = Color.White,
+                    Dock = DockStyle.Fill,
+                    
+                    Parent = splitContainer3.Panel2,
+                };
+                //splitContainer3.Panel2.Controls.Add(pSlide);
+                int i = 0;
             }
         }
 
         private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activeSlide = listView1.SelectedIndices[0];
+            splitContainer3.Panel2.Controls["pSlide" + activeSlide++].Visible = true;
+            for (int i = 0; i < countSlides; i++)
+            {
+                if (listView1.Items[i].Index != activeSlide)
+                    splitContainer3.Panel2.Controls["pSlide" + i].Visible = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RichTextBox richTextBox = new RichTextBox()
+            {
+                Name = "richTextBox" + Convert.ToString(activeSlide),
+                Text = "Ваш текст",
+            };
+            //splitContainer3.Panel2.Controls["pSlide" + activeSlide].Controls.Add(richTextBox);
+            //Controls["pSlide" + activeSlide].Controls.Add(Controls["richTextBox" + activeSlide]);
         }
     }
 }
