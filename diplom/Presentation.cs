@@ -15,7 +15,7 @@ namespace diplom
     public partial class Presentation : MaterialForm
     {
         int countSlides = 0;
-        int activeSlide = 0;
+        int activeSlide = 1;
         List<Panel> pSlides = new List<Panel>();
 
         public Presentation()
@@ -54,9 +54,8 @@ namespace diplom
         public void newSlide()
         {
             countSlides++;
-            listView1.Items.Add("Slide " + countSlides);
+            listBox1.Items.Add("Slide " + countSlides);
             comboBox1.SelectedItem = null;
-            comboBox1.Text = "Слайд";
             Panel pSlide = new Panel()
             {
                 Name = "pSlide" + Convert.ToString(countSlides),
@@ -74,16 +73,6 @@ namespace diplom
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView1.Items.Count; i++)
-            {
-                if (listView1.Items[i].Checked == true)
-                {
-                    activeSlide = i;
-                    pSlides[activeSlide].Visible = true;
-                    Console.WriteLine("### " + activeSlide + " $$$ " + pSlides[i].Name);
-                }
-                else pSlides[i].Visible = false;
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,11 +80,27 @@ namespace diplom
             RichTextBox richTextBox = new RichTextBox()
             {
                 Name = "richTextBox" + Convert.ToString(activeSlide),
-                Text = "Текущий слайд: " + activeSlide,
+                Text = "Текущий слайд: " + activeSlide + 1,
                 Parent = pSlides[activeSlide],
             };
-            //splitContainer3.Panel2.Controls["pSlide" + activeSlide].Controls.Add(richTextBox);
-            //Controls["pSlide" + activeSlide].Controls.Add(Controls["richTextBox" + activeSlide]);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activeSlide = listBox1.SelectedIndex + 1;
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                string note = "Slide " + activeSlide;
+                Console.WriteLine("!!! " + note);
+                Console.WriteLine("@@@ " + listBox1.Items[i].ToString());
+                if (listBox1.Items[i].ToString() == note)
+                {
+                    Console.WriteLine("### " + note);
+                    activeSlide = i;
+                    pSlides[activeSlide].Visible = true;
+                }
+                else pSlides[i].Visible = false;
+            }
         }
     }
 }
