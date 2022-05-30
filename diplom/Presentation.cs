@@ -15,7 +15,7 @@ namespace diplom
     public partial class Presentation : MaterialForm
     {
         int countSlides = 0;
-        int activeSlide = 1;
+        int activeSlide = 0;
         List<Panel> pSlides = new List<Panel>();
 
         public Presentation()
@@ -59,7 +59,7 @@ namespace diplom
             Panel pSlide = new Panel()
             {
                 Name = "pSlide" + Convert.ToString(countSlides),
-                BackColor = Color.Red,
+                BackColor = Color.White,
                 Dock = DockStyle.Fill,
                 Parent = splitContainer3.Panel2,
             };
@@ -71,35 +71,43 @@ namespace diplom
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             RichTextBox richTextBox = new RichTextBox()
             {
                 Name = "richTextBox" + Convert.ToString(activeSlide),
-                Text = "Текущий слайд: " + activeSlide + 1,
+                Text = "Введите ваш текст",
+                BackColor = Color.WhiteSmoke,
                 Parent = pSlides[activeSlide],
+                Location = new Point(50,10),
             };
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            activeSlide = listBox1.SelectedIndex + 1;
+            activeSlide = listBox1.SelectedIndex+1;
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string note = "Slide " + activeSlide;
-                Console.WriteLine("!!! " + note);
-                Console.WriteLine("@@@ " + listBox1.Items[i].ToString());
                 if (listBox1.Items[i].ToString() == note)
                 {
-                    Console.WriteLine("### " + note);
                     activeSlide = i;
                     pSlides[activeSlide].Visible = true;
                 }
                 else pSlides[i].Visible = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                PictureBox picture = new PictureBox()
+                {
+                    Image = Image.FromFile(openFileDialog1.FileName),
+                    Name = "pictureBox" + Convert.ToString(activeSlide),
+                    Parent = pSlides[activeSlide],
+                };
             }
         }
     }
