@@ -14,6 +14,9 @@ namespace diplom
 {
     public partial class Presentation : MaterialForm
     {
+        bool mouseDown;
+        int x1;
+        int y1;
         int countSlides = 0;
         int activeSlide = 0;
         List<Panel> pSlides = new List<Panel>();
@@ -38,11 +41,6 @@ namespace diplom
             menu.Show();
         }
 
-        private void materialListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0)
@@ -50,13 +48,13 @@ namespace diplom
                 newSlide();
             }
         }
-        
+
         public void newSlide()
         {
             countSlides++;
             listBox1.Items.Add("Slide " + countSlides);
             comboBox1.SelectedItem = null;
-            Panel pSlide = new Panel()
+            BufferedPanel pSlide = new BufferedPanel()
             {
                 Name = "pSlide" + Convert.ToString(countSlides),
                 BackColor = Color.White,
@@ -66,26 +64,9 @@ namespace diplom
             pSlides.Add(pSlide);
         }
 
-        private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            RichTextBox richTextBox = new RichTextBox()
-            {
-                Name = "richTextBox" + Convert.ToString(activeSlide),
-                Text = "Введите ваш текст",
-                BackColor = Color.WhiteSmoke,
-                Parent = pSlides[activeSlide],
-                Location = new Point(50,10),
-            };
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            activeSlide = listBox1.SelectedIndex+1;
+            activeSlide = listBox1.SelectedIndex + 1;
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
                 string note = "Slide " + activeSlide;
@@ -96,6 +77,26 @@ namespace diplom
                 }
                 else pSlides[i].Visible = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RichTextBox richTextBox = new RichTextBox()
+            {
+                Name = "richTextBox" + Convert.ToString(activeSlide),
+                Text = "Введите ваш текст",
+                BackColor = Color.WhiteSmoke,
+                Parent = pSlides[activeSlide],
+                Location = new Point(2,3),
+            };
+            Label label = new Label()
+            {
+                Name = "x" + Convert.ToString(activeSlide),
+                Text = "x", 
+                Parent = pSlides[activeSlide].Controls["richTextBox" + Convert.ToString(activeSlide)],
+                Location = new Point(86,80),
+                BackColor = Color.White,
+            };
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -109,6 +110,29 @@ namespace diplom
                     Parent = pSlides[activeSlide],
                 };
             }
+        }
+
+        private void materialLabel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                x1 = e.X;
+                y1 = e.Y;
+                richTextBox1.Location = new Point(x1, y1);
+                materialLabel1.Location = new Point(x1, y1);
+            }
+        }
+
+        private void materialLabel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            x1 = e.X;
+            y1 = e.Y;
+        }
+
+        private void materialLabel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace diplom
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu());
+            Application.Run(new AuthForm());
         }
     }
     public static class passPath
