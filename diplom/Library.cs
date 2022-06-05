@@ -5,8 +5,6 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-using Graph = Microsoft.Office.Interop.Graph;
-using System.Runtime.InteropServices;
 
 namespace diplom
 {

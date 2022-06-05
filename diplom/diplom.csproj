@@ -85,6 +85,9 @@
     <Compile Include="Courses.Designer.cs">
       <DependentUpon>Courses.cs</DependentUpon>
     </Compile>
+    <Compile Include="diplomDBDataSet.cs">
+      <DependentUpon>diplomDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="diplomDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
