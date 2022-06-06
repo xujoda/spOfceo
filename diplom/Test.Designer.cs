@@ -38,9 +38,6 @@ namespace diplom
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.diplomDBDataSet = new diplom.diplomDBDataSet();
-            this.statisticBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.statisticTableAdapter = new diplom.diplomDBDataSetTableAdapters.StatisticTableAdapter();
             this.idstudentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,11 +45,14 @@ namespace diplom
             this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxScoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statisticBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.diplomDBDataSet = new diplom.diplomDBDataSet();
+            this.statisticTableAdapter = new diplom.diplomDBDataSetTableAdapters.StatisticTableAdapter();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplomDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplomDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // materialRaisedButton1
@@ -73,14 +73,15 @@ namespace diplom
             // 
             // materialRaisedButton2
             // 
+            this.materialRaisedButton2.AutoSize = true;
             this.materialRaisedButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton2.Depth = 0;
             this.materialRaisedButton2.Icon = null;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(44, 49);
+            this.materialRaisedButton2.Location = new System.Drawing.Point(46, 49);
             this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton2.Name = "materialRaisedButton2";
             this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(121, 36);
+            this.materialRaisedButton2.Size = new System.Drawing.Size(108, 36);
             this.materialRaisedButton2.TabIndex = 1;
             this.materialRaisedButton2.Text = "Create test";
             this.materialRaisedButton2.UseVisualStyleBackColor = true;
@@ -92,7 +93,7 @@ namespace diplom
             this.materialRaisedButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton4.Depth = 0;
             this.materialRaisedButton4.Icon = null;
-            this.materialRaisedButton4.Location = new System.Drawing.Point(44, 104);
+            this.materialRaisedButton4.Location = new System.Drawing.Point(40, 105);
             this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton4.Name = "materialRaisedButton4";
             this.materialRaisedButton4.Primary = true;
@@ -112,9 +113,9 @@ namespace diplom
             this.materialRaisedButton5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton5.Name = "materialRaisedButton5";
             this.materialRaisedButton5.Primary = true;
-            this.materialRaisedButton5.Size = new System.Drawing.Size(171, 36);
+            this.materialRaisedButton5.Size = new System.Drawing.Size(163, 36);
             this.materialRaisedButton5.TabIndex = 4;
-            this.materialRaisedButton5.Text = "Statistict of passes";
+            this.materialRaisedButton5.Text = "Statistic of passes";
             this.materialRaisedButton5.UseVisualStyleBackColor = true;
             this.materialRaisedButton5.Click += new System.EventHandler(this.materialRaisedButton5_Click);
             // 
@@ -157,20 +158,6 @@ namespace diplom
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(584, 291);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // diplomDBDataSet
-            // 
-            this.diplomDBDataSet.DataSetName = "diplomDBDataSet";
-            this.diplomDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // statisticBindingSource
-            // 
-            this.statisticBindingSource.DataMember = "Statistic";
-            this.statisticBindingSource.DataSource = this.diplomDBDataSet;
-            // 
-            // statisticTableAdapter
-            // 
-            this.statisticTableAdapter.ClearBeforeFill = true;
             // 
             // idstudentDataGridViewTextBoxColumn
             // 
@@ -225,6 +212,20 @@ namespace diplom
             this.classDataGridViewTextBoxColumn.ReadOnly = true;
             this.classDataGridViewTextBoxColumn.Width = 50;
             // 
+            // statisticBindingSource
+            // 
+            this.statisticBindingSource.DataMember = "Statistic";
+            this.statisticBindingSource.DataSource = this.diplomDBDataSet;
+            // 
+            // diplomDBDataSet
+            // 
+            this.diplomDBDataSet.DataSetName = "diplomDBDataSet";
+            this.diplomDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // statisticTableAdapter
+            // 
+            this.statisticTableAdapter.ClearBeforeFill = true;
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,8 +243,8 @@ namespace diplom
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diplomDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diplomDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

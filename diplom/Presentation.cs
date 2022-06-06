@@ -84,14 +84,43 @@ namespace diplom
                 Parent = pSlides[activeSlide],
                 Location = new Point(2,3),
             };
-            Label label = new Label()
+            richTextBox.MouseMove += RichTextBox_MouseMove;
+            richTextBox.MouseUp += RichTextBox_MouseUp;
+            richTextBox.MouseDown += RichTextBox_MouseDown;
+            /*Label label = new Label()
             {
                 Name = "x" + Convert.ToString(activeSlide),
                 Text = "x", 
                 Parent = pSlides[activeSlide].Controls["richTextBox" + Convert.ToString(activeSlide)],
                 Location = new Point(86,80),
                 BackColor = Color.White,
-            };
+            };*/
+        }
+
+        private void RichTextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            //throw new NotImplementedException();
+            mouseDown = true;
+            x1 = e.X;
+            y1 = e.Y;
+        }
+
+        private void RichTextBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            //throw new NotImplementedException();
+            mouseDown = false;
+        }
+
+        private void RichTextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if (mouseDown)
+            {
+                x1 = e.X;
+                y1 = e.Y;
+                RichTextBox richTextBox = sender as RichTextBox;
+                richTextBox.Location = new Point(x1, y1);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -105,29 +134,6 @@ namespace diplom
                     Parent = pSlides[activeSlide],
                 };
             }
-        }
-
-        private void materialLabel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                x1 = e.X;
-                y1 = e.Y;
-                richTextBox1.Location = new Point(x1, y1);
-                materialLabel1.Location = new Point(x1, y1);
-            }
-        }
-
-        private void materialLabel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseDown = true;
-            x1 = e.X;
-            y1 = e.Y;
-        }
-
-        private void materialLabel1_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
         }
     }
 }
