@@ -35,10 +35,20 @@ namespace diplom
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.выбратьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.снятьВыделениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.materialContextMenuStrip2 = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.выделитьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.снятьВыделениеToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -51,12 +61,17 @@ namespace diplom
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.materialContextMenuStrip1.SuspendLayout();
+            this.materialContextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.splitContainer1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(964, 475);
@@ -64,7 +79,9 @@ namespace diplom
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -136,6 +153,9 @@ namespace diplom
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.splitContainer3.Panel1.Controls.Add(this.button4);
+            this.splitContainer3.Panel1.Controls.Add(this.trackBar1);
+            this.splitContainer3.Panel1.Controls.Add(this.button3);
             this.splitContainer3.Panel1.Controls.Add(this.button2);
             this.splitContainer3.Panel1.Controls.Add(this.button1);
             this.splitContainer3.Panel1.Controls.Add(this.comboBox1);
@@ -146,6 +166,16 @@ namespace diplom
             this.splitContainer3.Size = new System.Drawing.Size(744, 393);
             this.splitContainer3.SplitterDistance = 62;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(289, 36);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Очистить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -185,6 +215,79 @@ namespace diplom
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBar1.Location = new System.Drawing.Point(551, 3);
+            this.trackBar1.Maximum = 50;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(190, 45);
+            this.trackBar1.TabIndex = 4;
+            this.trackBar1.Value = 26;
+            this.trackBar1.Visible = false;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выбратьЭлементToolStripMenuItem,
+            this.снятьВыделениеToolStripMenuItem});
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(177, 48);
+            // 
+            // выбратьЭлементToolStripMenuItem
+            // 
+            this.выбратьЭлементToolStripMenuItem.Name = "выбратьЭлементToolStripMenuItem";
+            this.выбратьЭлементToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.выбратьЭлементToolStripMenuItem.Text = "Выделить элемент";
+            this.выбратьЭлементToolStripMenuItem.Click += new System.EventHandler(this.выбратьЭлементToolStripMenuItem_Click);
+            // 
+            // снятьВыделениеToolStripMenuItem
+            // 
+            this.снятьВыделениеToolStripMenuItem.Name = "снятьВыделениеToolStripMenuItem";
+            this.снятьВыделениеToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.снятьВыделениеToolStripMenuItem.Text = "Снять выделение";
+            this.снятьВыделениеToolStripMenuItem.Click += new System.EventHandler(this.снятьВыделениеToolStripMenuItem_Click);
+            // 
+            // materialContextMenuStrip2
+            // 
+            this.materialContextMenuStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip2.Depth = 0;
+            this.materialContextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выделитьЭлементToolStripMenuItem,
+            this.снятьВыделениеToolStripMenuItem1});
+            this.materialContextMenuStrip2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip2.Name = "materialContextMenuStrip2";
+            this.materialContextMenuStrip2.Size = new System.Drawing.Size(177, 48);
+            // 
+            // выделитьЭлементToolStripMenuItem
+            // 
+            this.выделитьЭлементToolStripMenuItem.Name = "выделитьЭлементToolStripMenuItem";
+            this.выделитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.выделитьЭлементToolStripMenuItem.Text = "Выделить элемент";
+            this.выделитьЭлементToolStripMenuItem.Click += new System.EventHandler(this.выделитьЭлементToolStripMenuItem_Click);
+            // 
+            // снятьВыделениеToolStripMenuItem1
+            // 
+            this.снятьВыделениеToolStripMenuItem1.Name = "снятьВыделениеToolStripMenuItem1";
+            this.снятьВыделениеToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
+            this.снятьВыделениеToolStripMenuItem1.Text = "Снять выделение";
+            this.снятьВыделениеToolStripMenuItem1.Click += new System.EventHandler(this.снятьВыделениеToolStripMenuItem1_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(371, 36);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(120, 23);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Параметры текста";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +297,7 @@ namespace diplom
             this.Name = "Presentation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Presentation";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Presentation_FormClosed);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -205,8 +309,12 @@ namespace diplom
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.materialContextMenuStrip1.ResumeLayout(false);
+            this.materialContextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -223,5 +331,15 @@ namespace diplom
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem выбратьЭлементToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem снятьВыделениеToolStripMenuItem;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem выделитьЭлементToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem снятьВыделениеToolStripMenuItem1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.FontDialog fontDialog1;
     }
 }
