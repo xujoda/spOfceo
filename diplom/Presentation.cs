@@ -72,8 +72,6 @@ namespace diplom
                 Parent = splitContainer3.Panel2,
             };
             pSlides.Add(pSlide);
-            for (int i = 0; i < pSlides.Count; i++)
-                Console.WriteLine("pSlide name: " + pSlides[i].Name);
         }
 
         public void deleteSlide()
@@ -103,9 +101,6 @@ namespace diplom
                 }
                 else pSlides[i].Visible = false;
             }
-            Console.WriteLine("Active: " + activeSlide);
-            Console.WriteLine("Active pslide: " + pSlides[activeSlide].Name);
-            Console.WriteLine("listbox selIndex: "+ listBox1.SelectedIndex);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -223,7 +218,7 @@ namespace diplom
             trackBar1.Visible = false;
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void changeSizeElement()
         {
             var k = 1;
             Size startSize;
@@ -240,6 +235,11 @@ namespace diplom
                 pSlides[activeSlide].Controls[pickedRTB].Width = startSize.Width + trackBar1.Value * k;
                 pSlides[activeSlide].Controls[pickedRTB].Height = startSize.Height + trackBar1.Value * k;
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            changeSizeElement();
         }
         
         private void выбратьЭлементToolStripMenuItem_Click(object sender, EventArgs e) // выбор текстбокса
@@ -280,6 +280,17 @@ namespace diplom
                 }
             }
             else MessageBox.Show("Выделите текстовое поле!");
+        }
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                savePresentation();
+        }
+
+        private void savePresentation()
+        {
+            
         }
     }
 }
