@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace diplom
 {
@@ -18,9 +21,28 @@ namespace diplom
         bool pickedRichTextBox;
         string pickedPB;
         string pickedRTB;
-        List<Panel> pSlides = new List<Panel>();
-        List<int> textBoxElements = new List<int>();
-        List<int> pictureElements = new List<int>();
+        /*public List<Panel> pSlides = new List<Panel>();
+        public List<int> textBoxElements = new List<int>();
+        public List <int> pictureElements = new List<int>();*/
+        //XmlSerializer xmlSerializer = new XmlSerializer(typeof(Slides));
+        Slides slides = new Slides();
+
+        private void uploadPresentation()
+        {
+            
+        }
+
+        private void savePresentation()
+        {
+            
+        }
+
+        private class Slides
+        {
+            public List<Panel> pSlides = new List<Panel>();
+            public List<int> textBoxElements = new List<int>();
+            public List<int> pictureElements = new List<int>();
+        }
 
         public Presentation()
         {
@@ -71,7 +93,7 @@ namespace diplom
                 Dock = DockStyle.Fill,
                 Parent = splitContainer3.Panel2,
             };
-            pSlides.Add(pSlide);
+            slides.pSlides.Add(pSlide);
         }
 
         public void deleteSlide()
@@ -81,7 +103,7 @@ namespace diplom
                 if (activeSlide == (countSlides - 1))
                 {
                     clearPanel();
-                    pSlides.Remove(pSlides[activeSlide]);
+                    slides.pSlides.Remove(slides.pSlides[activeSlide]);
                 }
                 listBox1.Items.Remove(listBox1.Items[activeSlide]);
                 countSlides--;
@@ -97,10 +119,11 @@ namespace diplom
                 if (listBox1.Items[i].ToString() == note)
                 {
                     activeSlide = i;
-                    pSlides[activeSlide].Visible = true;
+                    slides.pSlides[activeSlide].Visible = true;
                 }
-                else pSlides[i].Visible = false;
+                else slides.pSlides[i].Visible = false;
             }
+            checkOff();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,13 +131,13 @@ namespace diplom
             if (countSlides > 0)
             {
                 var k = 1;
-                textBoxElements.Add(k);
+                slides.textBoxElements.Add(k);
                 RichTextBox richTextBox = new RichTextBox()
                 {
-                    Name = "richTextBox" + Convert.ToString(activeSlide) + Convert.ToString(textBoxElements.Count),
+                    Name = "richTextBox" + Convert.ToString(activeSlide) + Convert.ToString(slides.textBoxElements.Count),
                     Text = "Введите ваш текст",
                     BackColor = Color.WhiteSmoke,
-                    Parent = pSlides[activeSlide],
+                    Parent = slides.pSlides[activeSlide],
                     Location = new Point(2, 3),
                 };
                 richTextBox.MouseMove += RichTextBox_MouseMove;
@@ -158,12 +181,12 @@ namespace diplom
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     var k = 1;
-                    pictureElements.Add(k);
+                    slides.pictureElements.Add(k);
                     PictureBox picture = new PictureBox()
                     {
                         Image = Image.FromFile(openFileDialog1.FileName),
-                        Name = "pictureBox" + Convert.ToString(activeSlide) + Convert.ToString(pictureElements.Count),
-                        Parent = pSlides[activeSlide],
+                        Name = "pictureBox" + Convert.ToString(activeSlide) + Convert.ToString(slides.pictureElements.Count),
+                        Parent = slides.pSlides[activeSlide],
                         SizeMode = PictureBoxSizeMode.StretchImage,
                     };
                     picture.MouseDown += Picture_MouseDown;
@@ -209,7 +232,7 @@ namespace diplom
 
         private void clearPanel()
         {
-            pSlides[activeSlide].Controls.Clear();
+            slides.pSlides[activeSlide].Controls.Clear();
             pickedRTB = "";
             pickedPB = "";
             pickedPictureBox = false;
@@ -225,15 +248,15 @@ namespace diplom
             if (trackBar1.Value < 26) k = -1;
             if (pickedPictureBox == true)
             {
-                startSize = pSlides[activeSlide].Controls[pickedPB].Size;
-                pSlides[activeSlide].Controls[pickedPB].Width = startSize.Width + trackBar1.Value * k;
-                pSlides[activeSlide].Controls[pickedPB].Height = startSize.Height + trackBar1.Value * k;
+                startSize = slides.pSlides[activeSlide].Controls[pickedPB].Size;
+                slides.pSlides[activeSlide].Controls[pickedPB].Width = startSize.Width + trackBar1.Value * k;
+                slides.pSlides[activeSlide].Controls[pickedPB].Height = startSize.Height + trackBar1.Value * k;
             }
             if (pickedRichTextBox == true)
             {
-                startSize = pSlides[activeSlide].Controls[pickedRTB].Size;
-                pSlides[activeSlide].Controls[pickedRTB].Width = startSize.Width + trackBar1.Value * k;
-                pSlides[activeSlide].Controls[pickedRTB].Height = startSize.Height + trackBar1.Value * k;
+                startSize = slides.pSlides[activeSlide].Controls[pickedRTB].Size;
+                slides.pSlides[activeSlide].Controls[pickedRTB].Width = startSize.Width + trackBar1.Value * k;
+                slides.pSlides[activeSlide].Controls[pickedRTB].Height = startSize.Height + trackBar1.Value * k;
             }
         }
 
@@ -250,10 +273,7 @@ namespace diplom
 
         private void снятьВыделениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pickedRTB = "";
-            pickedRichTextBox = false;
-            trackBar1.Visible = false;
-            trackBar1.Value = 26;
+            checkOff();
         }
         
         private void выделитьЭлементToolStripMenuItem_Click(object sender, EventArgs e) // выбор картинки
@@ -264,10 +284,7 @@ namespace diplom
 
         private void снятьВыделениеToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            pickedPB = "";
-            pickedPictureBox = false;
-            trackBar1.Visible = false;
-            trackBar1.Value = 26;
+            checkOff();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -276,21 +293,26 @@ namespace diplom
             {
                 if (fontDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    pSlides[activeSlide].Controls[pickedRTB].Font = fontDialog1.Font;
+                    slides.pSlides[activeSlide].Controls[pickedRTB].Font = fontDialog1.Font;
                 }
             }
             else MessageBox.Show("Выделите текстовое поле!");
+        }
+
+        private void checkOff()
+        {
+            pickedRTB = "";
+            pickedPB = "";
+            pickedRichTextBox = false;
+            pickedPictureBox = false;
+            trackBar1.Visible = false;
+            trackBar1.Value = 26;
         }
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 savePresentation();
-        }
-
-        private void savePresentation()
-        {
-            
         }
     }
 }

@@ -64,3 +64,5 @@ D:\NVSU\Diplom\diplom\diplom\obj\Debug\diplom.csproj.CoreCompileInputs.cache
 D:\NVSU\Diplom\diplom\diplom\obj\Debug\diplom.csproj.CopyComplete
 D:\NVSU\Diplom\diplom\diplom\obj\Debug\diplom.exe
 D:\NVSU\Diplom\diplom\diplom\obj\Debug\diplom.pdb
+D:\NVSU\Diplom\diplom\diplom\bin\Debug\Vse.Web.Serialization.dll
+D:\NVSU\Diplom\diplom\diplom\bin\Debug\Vse.Web.Serialization.pdb
