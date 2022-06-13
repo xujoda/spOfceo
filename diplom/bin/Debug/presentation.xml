@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<AttributesSlides xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <attributesEl>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>richTextBox01</string>
+    <string>{X=62,Y=30}</string>
+    <string>Slide 1.
+Hello world</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>richTextBox12</string>
+    <string>{X=202,Y=97}</string>
+    <string>Slide 2 1/2</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>richTextBox13</string>
+    <string>{X=2,Y=3}</string>
+    <string>Slide 2 2/2</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>richTextBox24</string>
+    <string>{X=56,Y=72}</string>
+    <string>Введите ваш текст</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+  </attributesEl>
+</AttributesSlides>

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin;
-using System.Runtime.Serialization;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -12,6 +11,7 @@ namespace diplom
 {
     public partial class Presentation : MaterialForm
     {
+        Slides slides = new Slides();
         bool mouseDown;
         int x1;
         int y1;
@@ -21,27 +21,83 @@ namespace diplom
         bool pickedRichTextBox;
         string pickedPB;
         string pickedRTB;
-        /*public List<Panel> pSlides = new List<Panel>();
-        public List<int> textBoxElements = new List<int>();
-        public List <int> pictureElements = new List<int>();*/
-        //XmlSerializer xmlSerializer = new XmlSerializer(typeof(Slides));
-        Slides slides = new Slides();
 
         private void uploadPresentation()
         {
-            
+            openFileDialog1.Filter = "xml";
+            XmlSerializer deserializer = new XmlSerializer(typeof(AttributesSlides));
+            using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open))
+            {
+                AttributesSlides? attributesSlides = deserializer.Deserialize(fs) as AttributesSlides;
+            }
+        }
+        
+        private void savePresentation(string path)
+        {
+            setAttributesSlides();
+            XmlSerializer serializer = new XmlSerializer(typeof(AttributesSlides));
+            using (FileStream fs = new FileStream("presentation.xml", FileMode.OpenOrCreate))
+            {
+                serializer.Serialize(fs, attributesSlides);
+            }
+
+                MessageBox.Show("Презентация успешно сохранена!");
+        }
+        
+        [Serializable]
+        public class AttributesSlides
+        {
+            public List<string> attributesEl{ get; set; } // type, name, location, text, font
+
+            public AttributesSlides()
+            {
+                attributesEl = new List<string>();
+            }
+
+            public AttributesSlides(List<string> atrbtEl)
+            {
+                attributesEl = atrbtEl;
+            }
+        }
+        AttributesSlides attributesSlides = new AttributesSlides();
+        private void setAttributesSlides()
+        {
+            for (int i = 0; i < countSlides; i++)
+            {
+                for (int j = 0; j < slides.pSlides[i].Controls.Count; j++)
+                {
+                    string note = slides.pSlides[i].Controls[j].GetType().ToString();
+                    attributesSlides.attributesEl.Add(note);
+                    if (note == "System.Windows.Forms.RichTextBox")
+                    {
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Name.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Location.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Text.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Font.ToString());
+                    }
+                }
+            }
         }
 
-        private void savePresentation()
+        class Slides
         {
-            
-        }
+            public List<Panel> pSlides = new List<Panel>();//{ get; set; }
+            public List<int> textBoxElements = new List<int>();//{ get; set; } 
+            public List<int> pictureElements = new List<int>();//{ get; set; } 
 
-        private class Slides
-        {
-            public List<Panel> pSlides = new List<Panel>();
-            public List<int> textBoxElements = new List<int>();
-            public List<int> pictureElements = new List<int>();
+            /*public Slides()
+            {
+                List<Panel> pSlides = new List<Panel>();
+                List<int> textBoxElements = new List<int>();
+                List<int> pictureElements = new List<int>();
+            }
+
+            public Slides(List<Panel> slide, List<int> tbEl, List<int> pictEl)
+            {
+                List<Panel> pSlides = slide;
+                List<int> textBoxElements = tbEl;
+                List<int> pictureElements = pictEl;
+            }*/
         }
 
         public Presentation()
@@ -311,8 +367,11 @@ namespace diplom
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.Filter = "xml";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                savePresentation();
+            {
+                savePresentation(saveFileDialog1.FileName);
+            }
         }
     }
 }
