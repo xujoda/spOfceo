@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<AttributesSlides xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <attributesEl>
+    <string>pSlide1</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide1</string>
+    <string>richTextBox01</string>
+    <string>{X=353,Y=94}</string>
+    <string>1 33</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide1</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide1</string>
+    <string>richTextBox02</string>
+    <string>{X=193,Y=109}</string>
+    <string>1 23</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide1</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide1</string>
+    <string>richTextBox03</string>
+    <string>{X=69,Y=41}</string>
+    <string>1 13</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide2</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide2</string>
+    <string>richTextBox14</string>
+    <string>{X=106,Y=150}</string>
+    <string>2 12</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide2</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide2</string>
+    <string>richTextBox15</string>
+    <string>{X=56,Y=38}</string>
+    <string>2 22</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+  </attributesEl>
+</AttributesSlides>
