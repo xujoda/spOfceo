@@ -55,13 +55,10 @@ namespace diplom
                 pSlide = attributesSlides.attributesEl[j];
                 while (i < attributesSlides.attributesEl.Count)
                 {
-                    Console.WriteLine("#" + UploadedcountSlides);
-                    Console.WriteLine("$" + countSlides);
                     if (countSlides < UploadedcountSlides)
                     {
                         if (attributesSlides.attributesEl[i].ToString() != pSlide) ;
                         {
-                            Console.WriteLine("%%%%%");
                             newSlide();
                             k++;
                         }
@@ -72,6 +69,13 @@ namespace diplom
                         //            Parent                      Name,                                 Location                 
                         uploadTextBox(attributesSlides.attributesEl[i + 1], attributesSlides.attributesEl[i + 2], attributesSlides.attributesEl[i + 3],
                         // Text                                         font
+                        attributesSlides.attributesEl[i + 4], attributesSlides.attributesEl[i + 5]);
+                    }
+                    if (note == "System.Windows.Forms.PictureBox")
+                    {
+                        //            Parent                      Name,                                 Location                 
+                        uploadPictureBox(attributesSlides.attributesEl[i + 1], attributesSlides.attributesEl[i + 2], attributesSlides.attributesEl[i + 3],
+                        // Size                                         ???Image
                         attributesSlides.attributesEl[i + 4], attributesSlides.attributesEl[i + 5]);
                     }
                     i++;
@@ -124,6 +128,14 @@ namespace diplom
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Location.ToString());
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Text.ToString());
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Font.ToString());
+                    }
+                    if (note == "System.Windows.Forms.PictureBox")
+                    {
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Parent.Name.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Name.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Location.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Size.ToString());
+                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Tag.ToString());
                     }
                 }
             }
@@ -303,7 +315,36 @@ namespace diplom
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void uploadPictureBox(string parent, string name, string location, string size, string img)
+        {
+            var g = Regex.Replace(location, @"[\{\}a-zA-Z=]", "").Split(',');
+            Point pointResult = new Point(
+                              int.Parse(g[0]),
+                              int.Parse(g[1]));
+            var k = 1;
+            slides.textBoxElements.Add(k);
+            Control par = new Control();
+            for (int i = 0; i < slides.pSlides.Count; i++)
+            {
+                if (slides.pSlides[i].Name.ToString() == parent)
+                    par = slides.pSlides[i];
+            }
+            PictureBox picture = new PictureBox()
+            {
+                Image = Image.FromFile(img),
+                Name = name,
+                Parent = par,
+                Tag = img,
+                Location = pointResult,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+            };
+            picture.MouseDown += Picture_MouseDown;
+            picture.MouseUp += Picture_MouseUp;
+            picture.MouseMove += Picture_MouseMove;
+            picture.ContextMenuStrip = materialContextMenuStrip2;
+        }
+
+        private void newPictureBox()
         {
             if (countSlides > 0)
             {
@@ -315,9 +356,11 @@ namespace diplom
                     {
                         Image = Image.FromFile(openFileDialog1.FileName),
                         Name = "pictureBox" + Convert.ToString(activeSlide) + Convert.ToString(slides.pictureElements.Count),
+                        Tag = openFileDialog1.FileName,
                         Parent = slides.pSlides[activeSlide],
                         SizeMode = PictureBoxSizeMode.StretchImage,
                     };
+                    Console.WriteLine(openFileDialog1.FileName);
                     picture.MouseDown += Picture_MouseDown;
                     picture.MouseUp += Picture_MouseUp;
                     picture.MouseMove += Picture_MouseMove;
@@ -325,6 +368,11 @@ namespace diplom
                 }
             }
             else MessageBox.Show("Сначала создайте слайд!");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            newPictureBox();
         }
 
         private void Picture_MouseDown(object sender, MouseEventArgs e)

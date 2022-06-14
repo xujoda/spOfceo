@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<AttributesSlides xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <attributesEl>
+    <string>pSlide1</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide1</string>
+    <string>richTextBox01</string>
+    <string>{X=202,Y=76}</string>
+    <string>slideFirst</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide1</string>
+    <string>System.Windows.Forms.PictureBox</string>
+    <string>pSlide1</string>
+    <string>pictureBox01</string>
+    <string>{X=0,Y=0}</string>
+    <string>{Width=208, Height=158}</string>
+    <string>D:\NVSU\Diplom\Admin\lines.bmp</string>
+    <string>pSlide2</string>
+    <string>System.Windows.Forms.PictureBox</string>
+    <string>pSlide2</string>
+    <string>pictureBox12</string>
+    <string>{X=304,Y=95}</string>
+    <string>{Width=167, Height=117}</string>
+    <string>D:\NVSU\Diplom\Admin\sun.jpg</string>
+    <string>pSlide2</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide2</string>
+    <string>richTextBox12</string>
+    <string>{X=2,Y=3}</string>
+    <string>slideSecond</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide3</string>
+    <string>System.Windows.Forms.RichTextBox</string>
+    <string>pSlide3</string>
+    <string>richTextBox23</string>
+    <string>{X=54,Y=49}</string>
+    <string>SLIDETHIRD</string>
+    <string>[Font: Name=Microsoft Sans Serif, Size=8,25, Units=3, GdiCharSet=204, GdiVerticalFont=False]</string>
+    <string>pSlide3</string>
+    <string>System.Windows.Forms.PictureBox</string>
+    <string>pSlide3</string>
+    <string>pictureBox23</string>
+    <string>{X=0,Y=0}</string>
+    <string>{Width=448, Height=398}</string>
+    <string>D:\NVSU\Diplom\Admin\smile.bmp</string>
+    <string>3</string>
+  </attributesEl>
+</AttributesSlides>
