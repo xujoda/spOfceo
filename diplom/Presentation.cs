@@ -12,6 +12,8 @@ namespace diplom
     public partial class Presentation : MaterialForm
     {
         Slides slides = new Slides();
+        AttributesSlides attributesSlides = new AttributesSlides();
+        richTB richTextBox = new richTB();
         bool mouseDown;
         int x1;
         int y1;
@@ -22,32 +24,75 @@ namespace diplom
         string pickedPB;
         string pickedRTB;
 
-        private void uploadPresentation()
+        private void deserialization(string path)
         {
-            openFileDialog1.Filter = "xml";
             XmlSerializer deserializer = new XmlSerializer(typeof(AttributesSlides));
-            using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open))
+            using (FileStream fs = new FileStream(path, FileMode.Open))
             {
-                AttributesSlides? attributesSlides = deserializer.Deserialize(fs) as AttributesSlides;
+                AttributesSlides? atrSlds = deserializer.Deserialize(fs) as AttributesSlides;
+                if (atrSlds != null)
+                {
+                    attributesSlides = atrSlds;
+                }
+            }
+            XmlSerializer deserializer2 = new XmlSerializer(typeof(richTB));
+            using (FileStream fs = new FileStream(path, FileMode.Open))
+            {
+                richTB? rtb = deserializer.Deserialize(fs) as richTB;
+                if (rtb!= null)
+                {
+                    richTextBox = rtb;
+                }
+            }
+            uploadSlides();
+        }
+
+        private void uploadSlides()
+        {
+            countSlides = 0;
+            listBox1.Items.Clear();
+            if (activeSlide != 0)
+            {
+                clearPanel();
+            }
+            checkOff();
+            for (int i = 0; i < attributesSlides.attributesEl.Count; i++)
+            {
+                string note = "pSlide" + Convert.ToString(i + 1);
+                if (attributesSlides.attributesEl[i].ToString() == note)
+                {
+                    newSlide();
+                }
+                note = attributesSlides.attributesEl[i].ToString();
+                Console.WriteLine(note);
+                if (note == "System.Windows.Forms.RichTextBox")
+                {
+                    newTextBox();
+                }
             }
         }
-        
-        private void savePresentation(string path)
+
+        private void serialization(string path)
         {
             setAttributesSlides();
             XmlSerializer serializer = new XmlSerializer(typeof(AttributesSlides));
-            using (FileStream fs = new FileStream("presentation.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("presentation1.xml", FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fs, attributesSlides);
             }
-
-                MessageBox.Show("Презентация успешно сохранена!");
+            XmlSerializer serializer2 = new XmlSerializer(typeof(richTB));
+            // diplom.Presentation+richTB недоступен в силу его уровня защиты. Возможна обработка только общих типов."
+            using (FileStream fs = new FileStream("presentation1.xml", FileMode.OpenOrCreate))
+            {
+                serializer.Serialize(fs, richTextBox);
+            }
+            MessageBox.Show("Презентация успешно сохранена!");
         }
-        
+
         [Serializable]
         public class AttributesSlides
         {
-            public List<string> attributesEl{ get; set; } // type, name, location, text, font
+            public List<string> attributesEl { get; set; } // SlideName, type, Element Name, location, text, font
 
             public AttributesSlides()
             {
@@ -59,11 +104,40 @@ namespace diplom
                 attributesEl = atrbtEl;
             }
         }
-        AttributesSlides attributesSlides = new AttributesSlides();
+
+        [Serializable]
+        class richTB : RichTextBox // попробовать без наследования, создавать отдельно РТБ и сохранять параметры, которые потом буду передавать
+            // для создания этого же РТБ
+        {
+            public RichTextBox rtb { get; set; }
+
+            public richTB() { }
+
+            public richTB(string name, Control parent)
+            {
+                Name = name;
+                Text = "Введите ваш текст";
+                BackColor = Color.WhiteSmoke;
+                Parent = parent;
+                Location = new Point(2, 3);
+            }
+
+            public richTB(string name, string text, Control parent, Point location, Font font)
+            {
+                Name = name;
+                Text = text;
+                BackColor = Color.WhiteSmoke;
+                Parent = parent;
+                Location = location;
+                Font = font;
+            }
+        }
+
         private void setAttributesSlides()
         {
             for (int i = 0; i < countSlides; i++)
             {
+                attributesSlides.attributesEl.Add(slides.pSlides[i].Name.ToString());
                 for (int j = 0; j < slides.pSlides[i].Controls.Count; j++)
                 {
                     string note = slides.pSlides[i].Controls[j].GetType().ToString();
@@ -81,23 +155,9 @@ namespace diplom
 
         class Slides
         {
-            public List<Panel> pSlides = new List<Panel>();//{ get; set; }
-            public List<int> textBoxElements = new List<int>();//{ get; set; } 
-            public List<int> pictureElements = new List<int>();//{ get; set; } 
-
-            /*public Slides()
-            {
-                List<Panel> pSlides = new List<Panel>();
-                List<int> textBoxElements = new List<int>();
-                List<int> pictureElements = new List<int>();
-            }
-
-            public Slides(List<Panel> slide, List<int> tbEl, List<int> pictEl)
-            {
-                List<Panel> pSlides = slide;
-                List<int> textBoxElements = tbEl;
-                List<int> pictureElements = pictEl;
-            }*/
+            public List<Panel> pSlides = new List<Panel>();
+            public List<int> textBoxElements = new List<int>();
+            public List<int> pictureElements = new List<int>();
         }
 
         public Presentation()
@@ -182,26 +242,27 @@ namespace diplom
             checkOff();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void newTextBox()
         {
             if (countSlides > 0)
             {
                 var k = 1;
                 slides.textBoxElements.Add(k);
-                RichTextBox richTextBox = new RichTextBox()
-                {
-                    Name = "richTextBox" + Convert.ToString(activeSlide) + Convert.ToString(slides.textBoxElements.Count),
-                    Text = "Введите ваш текст",
-                    BackColor = Color.WhiteSmoke,
-                    Parent = slides.pSlides[activeSlide],
-                    Location = new Point(2, 3),
-                };
+                string Name = "richTextBox" + Convert.ToString(activeSlide) + Convert.ToString(slides.textBoxElements.Count);
+                Control Parent = slides.pSlides[activeSlide];
+                Console.WriteLine(Name);
+                richTB richTextBox = new richTB(Name,Parent);
                 richTextBox.MouseMove += RichTextBox_MouseMove;
                 richTextBox.MouseUp += RichTextBox_MouseUp;
                 richTextBox.MouseDown += RichTextBox_MouseDown;
                 richTextBox.ContextMenuStrip = materialContextMenuStrip1;
             }
             else MessageBox.Show("Сначала создайте слайд!");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            newTextBox();
         }
 
         private void RichTextBox_MouseDown(object sender, MouseEventArgs e)
@@ -320,7 +381,7 @@ namespace diplom
         {
             changeSizeElement();
         }
-        
+
         private void выбратьЭлементToolStripMenuItem_Click(object sender, EventArgs e) // выбор текстбокса
         {
             pickedRichTextBox = true;
@@ -331,7 +392,7 @@ namespace diplom
         {
             checkOff();
         }
-        
+
         private void выделитьЭлементToolStripMenuItem_Click(object sender, EventArgs e) // выбор картинки
         {
             pickedPictureBox = true;
@@ -367,11 +428,19 @@ namespace diplom
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.Filter = "xml";
+            saveFileDialog1.Filter = "Презентация (*.xml)|*.xml|Все файлы (*.*)|*.*";
+            saveFileDialog1.FileName = "";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                savePresentation(saveFileDialog1.FileName);
+                serialization(saveFileDialog1.FileName);
             }
+        }
+
+        private void materialRaisedButton3_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Презентация (*.xml)|*.xml|Все файлы (*.*)|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                deserialization(openFileDialog1.FileName);
         }
     }
 }
