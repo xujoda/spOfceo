@@ -25,7 +25,8 @@ namespace diplom
                 Primary.Grey400, Accent.LightBlue200,
                 TextShade.WHITE
             );
-
+            Presentation pp = new Presentation();
+            
         }
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
