@@ -75,7 +75,6 @@ namespace diplom
                                     menu.userRole = userRole;
                                     this.Hide();
                                     menu.Show();
-                                    Console.WriteLine("auth " + userName + ", " + userRole);
                                     menu.folderBrowserDialog1.SelectedPath = this.folderBrowserDialog1.SelectedPath;
                                 }
                                 else { MessageBox.Show("Введён неверный пароль!"); break; }

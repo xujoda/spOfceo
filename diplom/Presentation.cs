@@ -7,11 +7,14 @@ using MaterialSkin;
 using System.IO;
 using System.Xml.Serialization;
 using System.Text.RegularExpressions;
+using System.Windows;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace diplom
 {
     public partial class Presentation : MaterialForm
     {
+        
         Slides slides = new Slides();
         AttributesSlides attributesSlides = new AttributesSlides();
         bool mouseDown;
@@ -164,7 +167,7 @@ namespace diplom
 
         private void Presentation_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -513,9 +516,56 @@ namespace diplom
 
         private void materialRaisedButton4_Click(object sender, EventArgs e)
         {
-            PresentationView ppView = new PresentationView();
-            this.Hide();
-            ppView.Show();
+            if (countSlides > 0)
+            {
+                WindowState = FormWindowState.Maximized;
+                panelView.Visible = true;
+                panel1.Visible = false; ;
+                presentationView();
+            }
+            else MessageBox.Show("Не обнаружено ни одного слайда!");
+        }
+
+        private void materialFlatButton1_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+            panelView.Visible = false;
+            panel1.Visible = true;
+        }
+
+        int viewActiveSlide = 0;
+
+        private void presentationView()
+        {
+            Panel[] viewSlides = new Panel[countSlides];
+            slides.pSlides.CopyTo(viewSlides);
+            Panel panel = new Panel()
+                {
+                    Name = "viewSlide" + Convert.ToString(0),
+                    BackColor = Color.White,
+                    Dock = DockStyle.Fill,
+                    Parent = splitContainerView.Panel2,
+                };
+            panel.Controls.Add(viewSlides[viewActiveSlide]);
+             
+        }
+
+        private void viewNextSlide_Click(object sender, EventArgs e)
+        {
+            if (viewActiveSlide < countSlides)
+            {
+                nextViewSlide();
+            }
+            else MessageBox.Show("Это последний слайд!");
+        }
+
+        private void viewPastSlide_Click(object sender, EventArgs e)
+        {
+            if (viewActiveSlide > 0)
+            {
+                pastViewSlide();
+            }
+            else MessageBox.Show("Это первый слайд!");
         }
     }
 }

@@ -54,6 +54,11 @@ namespace diplom
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.panelView = new System.Windows.Forms.Panel();
+            this.splitContainerView = new System.Windows.Forms.SplitContainer();
+            this.viewPastSlide = new MaterialSkin.Controls.MaterialFlatButton();
+            this.viewNextSlide = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,6 +74,10 @@ namespace diplom
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.materialContextMenuStrip1.SuspendLayout();
             this.materialContextMenuStrip2.SuspendLayout();
+            this.panelView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerView)).BeginInit();
+            this.splitContainerView.Panel1.SuspendLayout();
+            this.splitContainerView.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -348,11 +357,92 @@ namespace diplom
             // 
             this.folderBrowserDialog1.SelectedPath = "D:\\NVSU\\Diplom\\Admin\\presentations";
             // 
+            // panelView
+            // 
+            this.panelView.Controls.Add(this.splitContainerView);
+            this.panelView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelView.Location = new System.Drawing.Point(0, 0);
+            this.panelView.Name = "panelView";
+            this.panelView.Size = new System.Drawing.Size(964, 539);
+            this.panelView.TabIndex = 0;
+            this.panelView.Visible = false;
+            // 
+            // splitContainerView
+            // 
+            this.splitContainerView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerView.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerView.Name = "splitContainerView";
+            this.splitContainerView.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerView.Panel1
+            // 
+            this.splitContainerView.Panel1.Controls.Add(this.viewPastSlide);
+            this.splitContainerView.Panel1.Controls.Add(this.viewNextSlide);
+            this.splitContainerView.Panel1.Controls.Add(this.materialFlatButton1);
+            this.splitContainerView.Size = new System.Drawing.Size(964, 539);
+            this.splitContainerView.SplitterDistance = 44;
+            this.splitContainerView.TabIndex = 0;
+            // 
+            // viewPastSlide
+            // 
+            this.viewPastSlide.AutoSize = true;
+            this.viewPastSlide.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.viewPastSlide.Depth = 0;
+            this.viewPastSlide.Dock = System.Windows.Forms.DockStyle.Right;
+            this.viewPastSlide.Icon = null;
+            this.viewPastSlide.Location = new System.Drawing.Point(628, 0);
+            this.viewPastSlide.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.viewPastSlide.MouseState = MaterialSkin.MouseState.HOVER;
+            this.viewPastSlide.Name = "viewPastSlide";
+            this.viewPastSlide.Primary = false;
+            this.viewPastSlide.Size = new System.Drawing.Size(173, 44);
+            this.viewPastSlide.TabIndex = 2;
+            this.viewPastSlide.Text = "Предыдущий слайд";
+            this.viewPastSlide.UseVisualStyleBackColor = true;
+            this.viewPastSlide.Click += new System.EventHandler(this.viewPastSlide_Click);
+            // 
+            // viewNextSlide
+            // 
+            this.viewNextSlide.AutoSize = true;
+            this.viewNextSlide.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.viewNextSlide.Depth = 0;
+            this.viewNextSlide.Dock = System.Windows.Forms.DockStyle.Right;
+            this.viewNextSlide.Icon = null;
+            this.viewNextSlide.Location = new System.Drawing.Point(801, 0);
+            this.viewNextSlide.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.viewNextSlide.MouseState = MaterialSkin.MouseState.HOVER;
+            this.viewNextSlide.Name = "viewNextSlide";
+            this.viewNextSlide.Primary = false;
+            this.viewNextSlide.Size = new System.Drawing.Size(163, 44);
+            this.viewNextSlide.TabIndex = 1;
+            this.viewNextSlide.Text = "Следующий слайд";
+            this.viewNextSlide.UseVisualStyleBackColor = true;
+            this.viewNextSlide.Click += new System.EventHandler(this.viewNextSlide_Click);
+            // 
+            // materialFlatButton1
+            // 
+            this.materialFlatButton1.AutoSize = true;
+            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButton1.Depth = 0;
+            this.materialFlatButton1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.materialFlatButton1.Icon = null;
+            this.materialFlatButton1.Location = new System.Drawing.Point(0, 0);
+            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton1.Name = "materialFlatButton1";
+            this.materialFlatButton1.Primary = false;
+            this.materialFlatButton1.Size = new System.Drawing.Size(69, 44);
+            this.materialFlatButton1.TabIndex = 0;
+            this.materialFlatButton1.Text = "Выйти";
+            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
+            // 
             // Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 539);
+            this.Controls.Add(this.panelView);
             this.Controls.Add(this.panel1);
             this.Name = "Presentation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -375,6 +465,11 @@ namespace diplom
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.materialContextMenuStrip1.ResumeLayout(false);
             this.materialContextMenuStrip2.ResumeLayout(false);
+            this.panelView.ResumeLayout(false);
+            this.splitContainerView.Panel1.ResumeLayout(false);
+            this.splitContainerView.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerView)).EndInit();
+            this.splitContainerView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -406,5 +501,10 @@ namespace diplom
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Panel panelView;
+        private System.Windows.Forms.SplitContainer splitContainerView;
+        private MaterialSkin.Controls.MaterialFlatButton viewPastSlide;
+        private MaterialSkin.Controls.MaterialFlatButton viewNextSlide;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
     }
 }

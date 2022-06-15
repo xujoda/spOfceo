@@ -95,19 +95,11 @@ namespace diplom
                     else winMediaPlayer.Visible = false;
                     if (fileType == ".pptx")
                     {
-                        materialFlatButton1.Visible = true;
                         ShowPresentation(file.FullName);
                         GC.Collect();//очистка памяти
                     }
-                    else materialFlatButton1.Visible = false;
                 }
             }
-        }
-
-        private void materialFlatButton1_Click(object sender, EventArgs e)
-        {
-            objPres.Close();
-            objApp.Quit();//показ окончен
         }
     }
 }

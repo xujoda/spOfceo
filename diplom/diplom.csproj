@@ -62,6 +62,11 @@
       <HintPath>..\packages\Microsoft.Office.Interop.PowerPoint.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -133,12 +138,6 @@
     <Compile Include="Presentation.Designer.cs">
       <DependentUpon>Presentation.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationView.Designer.cs">
-      <DependentUpon>PresentationView.cs</DependentUpon>
-    </Compile>
     <Compile Include="TestPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation.resx">
       <DependentUpon>Presentation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationView.resx">
-      <DependentUpon>PresentationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestPass.resx">
       <DependentUpon>TestPass.cs</DependentUpon>

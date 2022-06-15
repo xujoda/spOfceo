@@ -40,7 +40,6 @@ namespace diplom
             this.winMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,7 +116,6 @@ namespace diplom
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.materialFlatButton1);
             this.splitContainer1.Panel2.Controls.Add(this.winMediaPlayer);
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
@@ -136,49 +134,35 @@ namespace diplom
             // 
             // winMediaPlayer
             // 
+            this.winMediaPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.winMediaPlayer.Enabled = true;
-            this.winMediaPlayer.Location = new System.Drawing.Point(8, 6);
+            this.winMediaPlayer.Location = new System.Drawing.Point(0, 0);
             this.winMediaPlayer.Name = "winMediaPlayer";
             this.winMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("winMediaPlayer.OcxState")));
-            this.winMediaPlayer.Size = new System.Drawing.Size(491, 302);
+            this.winMediaPlayer.Size = new System.Drawing.Size(502, 311);
             this.winMediaPlayer.TabIndex = 3;
             this.winMediaPlayer.Visible = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(8, 6);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(491, 302);
+            this.pictureBox1.Size = new System.Drawing.Size(502, 311);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(4, 3);
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(495, 306);
+            this.richTextBox1.Size = new System.Drawing.Size(502, 311);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
-            // 
-            // materialFlatButton1
-            // 
-            this.materialFlatButton1.AutoSize = true;
-            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Icon = null;
-            this.materialFlatButton1.Location = new System.Drawing.Point(227, 260);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(191, 36);
-            this.materialFlatButton1.TabIndex = 12;
-            this.materialFlatButton1.Text = "Закрыть презентацию";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
-            this.materialFlatButton1.Visible = false;
-            this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
             // 
             // Library
             // 
@@ -196,7 +180,6 @@ namespace diplom
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Library_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.winMediaPlayer)).EndInit();
@@ -217,6 +200,5 @@ namespace diplom
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private AxWMPLib.AxWindowsMediaPlayer winMediaPlayer;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
     }
 }

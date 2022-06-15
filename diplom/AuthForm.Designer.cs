@@ -158,7 +158,7 @@ namespace diplom
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.folderBrowserDialog1.SelectedPath = "D:\\NVSU\\Диплом\\Admin";
+            this.folderBrowserDialog1.SelectedPath = "D:\\NVSU\\Diplom\\Admin";
             // 
             // AuthForm
             // 
