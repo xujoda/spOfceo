@@ -66,13 +66,10 @@ namespace diplom
                     string note = attributesSlides.attributesEl[i].ToString();
                     if (note == "System.Windows.Forms.RichTextBox")
                     {
-                        var fontConverter = new FontConverter();
-                        Font font = fontConverter.ConvertFromString(attributesSlides.attributesEl[i + 5]) as Font;
                         //            Parent                      Name,                                 Location                 
                         uploadTextBox(attributesSlides.attributesEl[i + 1], attributesSlides.attributesEl[i + 2], attributesSlides.attributesEl[i + 3],
                         // Text                                         font
-                        attributesSlides.attributesEl[i + 4], font);
-                        Console.WriteLine("$$$ " + font.ToString());
+                        attributesSlides.attributesEl[i + 4], attributesSlides.attributesEl[i + 5]);
                     }
                     if (note == "System.Windows.Forms.PictureBox")
                     {
@@ -234,7 +231,7 @@ namespace diplom
             checkOff();
         }
 
-        private void uploadTextBox(string parent, string name, string location, string text, Font font)
+        private void uploadTextBox(string parent, string name, string location, string text, string font)
         {
             var g = Regex.Replace(location, @"[\{\}a-zA-Z=]", "").Split(',');
             Point pointResult = new Point(
@@ -248,7 +245,8 @@ namespace diplom
                 if (slides.pSlides[i].Name.ToString() == parent)
                     par = slides.pSlides[i];
             }
-            Console.WriteLine("!!!" + font);
+            var fontConverter = new FontConverter();
+            Font fontResult = fontConverter.ConvertFromString(font) as Font;
             RichTextBox richTextBox = new RichTextBox()
             {
                 Name = name,
@@ -256,9 +254,8 @@ namespace diplom
                 BackColor = Color.WhiteSmoke,
                 Parent = par,
                 Location = pointResult,
-                Font = font,
+                Font = fontResult,
             };
-            //Console.WriteLine("## " + Convert.ToString(fontConverter.ConvertFromString(font)));
             richTextBox.MouseMove += RichTextBox_MouseMove;
             richTextBox.MouseUp += RichTextBox_MouseUp;
             richTextBox.MouseDown += RichTextBox_MouseDown;
@@ -326,6 +323,10 @@ namespace diplom
             Point pointResult = new Point(
                               int.Parse(g[0]),
                               int.Parse(g[1]));
+            var siz = Regex.Replace(size, @"[\{\}a-zA-Z=]", "").Split(',');
+            Size sizeResult = new Size(
+                              int.Parse(siz[0]),
+                              int.Parse(siz[1]));
             var k = 1;
             slides.textBoxElements.Add(k);
             Control par = new Control();
@@ -342,6 +343,7 @@ namespace diplom
                 Tag = img,
                 Location = pointResult,
                 SizeMode = PictureBoxSizeMode.StretchImage,
+                Size = sizeResult,
             };
             picture.MouseDown += Picture_MouseDown;
             picture.MouseUp += Picture_MouseUp;
