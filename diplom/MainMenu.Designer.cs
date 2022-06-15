@@ -157,13 +157,13 @@ namespace diplom
             this.materialRaisedButton7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton7.Depth = 0;
             this.materialRaisedButton7.Icon = null;
-            this.materialRaisedButton7.Location = new System.Drawing.Point(12, 73);
+            this.materialRaisedButton7.Location = new System.Drawing.Point(522, 268);
             this.materialRaisedButton7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton7.Name = "materialRaisedButton7";
             this.materialRaisedButton7.Primary = true;
-            this.materialRaisedButton7.Size = new System.Drawing.Size(147, 36);
+            this.materialRaisedButton7.Size = new System.Drawing.Size(129, 36);
             this.materialRaisedButton7.TabIndex = 15;
-            this.materialRaisedButton7.Text = "Личный кабинет";
+            this.materialRaisedButton7.Text = "Personal Page";
             this.materialRaisedButton7.UseVisualStyleBackColor = true;
             this.materialRaisedButton7.Click += new System.EventHandler(this.materialRaisedButton7_Click);
             // 

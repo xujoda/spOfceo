@@ -520,8 +520,8 @@ namespace diplom
             {
                 WindowState = FormWindowState.Maximized;
                 panelView.Visible = true;
-                panel1.Visible = false; ;
-                presentationView();
+                panel1.Visible = false;
+                presentationView(viewActiveSlide);
             }
             else MessageBox.Show("Не обнаружено ни одного слайда!");
         }
@@ -535,10 +535,8 @@ namespace diplom
 
         int viewActiveSlide = 0;
 
-        private void presentationView()
+        private void presentationView(int i)
         {
-            Panel[] viewSlides = new Panel[countSlides];
-            slides.pSlides.CopyTo(viewSlides);
             Panel panel = new Panel()
                 {
                     Name = "viewSlide" + Convert.ToString(0),
@@ -546,24 +544,31 @@ namespace diplom
                     Dock = DockStyle.Fill,
                     Parent = splitContainerView.Panel2,
                 };
-            panel.Controls.Add(viewSlides[viewActiveSlide]);
-             
+            panel.Controls.Clear();
+            for (int j = 0; j < slides.pSlides[viewActiveSlide].Controls.Count; j++)
+            {
+                Control control = new Control();
+                control = slides.pSlides[viewActiveSlide].Controls[j];
+                control.Parent = panel;
+            }
         }
 
         private void viewNextSlide_Click(object sender, EventArgs e)
         {
+            viewActiveSlide++;
             if (viewActiveSlide < countSlides)
             {
-                nextViewSlide();
+                presentationView(viewActiveSlide);
             }
             else MessageBox.Show("Это последний слайд!");
         }
 
         private void viewPastSlide_Click(object sender, EventArgs e)
         {
+            viewActiveSlide--;
             if (viewActiveSlide > 0)
             {
-                pastViewSlide();
+                presentationView(viewActiveSlide);
             }
             else MessageBox.Show("Это первый слайд!");
         }
