@@ -93,3 +93,4 @@ D:\MY_PROJECTS\diplom\obj\Debug\diplom.csproj.GenerateResource.cache
 D:\MY_PROJECTS\diplom\obj\Debug\diplom.csproj.CoreCompileInputs.cache
 D:\MY_PROJECTS\diplom\obj\Debug\diplom.exe
 D:\MY_PROJECTS\diplom\obj\Debug\diplom.pdb
+D:\MY_PROJECTS\diplom\obj\Debug\diplom.PresentationView.resources

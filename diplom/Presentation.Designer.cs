@@ -120,6 +120,7 @@ namespace diplom
             this.materialRaisedButton4.TabIndex = 3;
             this.materialRaisedButton4.Text = "Просмотр";
             this.materialRaisedButton4.UseVisualStyleBackColor = true;
+            this.materialRaisedButton4.Click += new System.EventHandler(this.materialRaisedButton4_Click);
             // 
             // materialRaisedButton3
             // 

@@ -505,5 +505,12 @@ namespace diplom
                 deserialization(path);
             }
         }
+
+        private void materialRaisedButton4_Click(object sender, EventArgs e)
+        {
+            PresentationView ppView = new PresentationView();
+            this.Hide();
+            ppView.Show();
+        }
     }
 }
