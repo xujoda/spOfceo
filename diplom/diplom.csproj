@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-  <LangVersion>8.0</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{086DA22F-50E6-4652-908B-97161046427F}</ProjectGuid>
@@ -133,6 +133,12 @@
     <Compile Include="Presentation.Designer.cs">
       <DependentUpon>Presentation.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationView.Designer.cs">
+      <DependentUpon>PresentationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation.resx">
       <DependentUpon>Presentation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationView.resx">
+      <DependentUpon>PresentationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestPass.resx">
       <DependentUpon>TestPass.cs</DependentUpon>

@@ -172,9 +172,9 @@ namespace diplom
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

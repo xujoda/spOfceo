@@ -16,6 +16,8 @@ namespace diplom
     public partial class AuthForm : MaterialForm
     {
         public string subject;
+        public string userName;
+        public string userRole;
         public AuthForm()
         {
             InitializeComponent();
@@ -65,10 +67,15 @@ namespace diplom
                                 if (textBox2.Text == (string)dataReader["password"])
                                 {
                                     subject = (string)dataReader["subject"];
+                                    userName = (string)dataReader["name"];
+                                    userRole = (string)dataReader["role"];
                                     MainMenu menu = new MainMenu();
+                                    menu.subject = subject;
+                                    menu.userName = userName;
+                                    menu.userRole = userRole;
                                     this.Hide();
                                     menu.Show();
-                                    menu.subject = subject;
+                                    Console.WriteLine("auth " + userName + ", " + userRole);
                                     menu.folderBrowserDialog1.SelectedPath = this.folderBrowserDialog1.SelectedPath;
                                 }
                                 else { MessageBox.Show("Введён неверный пароль!"); break; }

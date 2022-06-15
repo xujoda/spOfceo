@@ -10,6 +10,9 @@ namespace diplom
     public partial class MainMenu : MaterialForm
     {
         public string subject;
+        public string userName;
+        public string userRole;
+
         public MainMenu()
         {
             InitializeComponent();
@@ -77,6 +80,10 @@ namespace diplom
         private void materialRaisedButton7_Click(object sender, EventArgs e) // personalPage
         {
             PersonalPage pp = new PersonalPage();
+            pp.userName = userName;
+            pp.userRole = userRole;
+            pp.materialLabel1.Text = userName;
+            pp.materialLabel2.Text = userRole;
             this.Hide();
             pp.Show();
         }

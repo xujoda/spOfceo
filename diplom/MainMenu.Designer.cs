@@ -148,6 +148,7 @@ namespace diplom
             this.materialRaisedButton6.TabIndex = 14;
             this.materialRaisedButton6.Text = "Courses";
             this.materialRaisedButton6.UseVisualStyleBackColor = true;
+            this.materialRaisedButton6.Visible = false;
             this.materialRaisedButton6.Click += new System.EventHandler(this.materialRaisedButton6_Click);
             // 
             // materialRaisedButton7

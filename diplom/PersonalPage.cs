@@ -14,6 +14,9 @@ namespace diplom
 {
     public partial class PersonalPage : MaterialForm
     {
+        public string userName;
+        public string userRole;
+
         public PersonalPage()
         {
             InitializeComponent();
@@ -27,6 +30,9 @@ namespace diplom
                 Primary.Grey400, Accent.LightBlue200,
                 TextShade.WHITE
             );
+            materialLabel1.Text = userName;
+            materialLabel2.Text = userRole;
+            
         }
 
         private void PP_FormClosed(object sender, FormClosedEventArgs e)
