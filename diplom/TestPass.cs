@@ -51,7 +51,6 @@ namespace diplom
 
 
         int numberQue = 0;
-        int tQ = 0;
         double rightAns = 0;
         List<Question> questions = new List<Question>();
         List<Answer> answers = new List<Answer>();
@@ -299,7 +298,6 @@ namespace diplom
         int rightOneAnswer;
         private void OneAnswer()
         {
-            int a = 0;
             int i = 0;
             for (int j = 1; j <= 4; j++)
                 for (; i < answers.Count; i++)

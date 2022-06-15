@@ -107,13 +107,13 @@ namespace diplom
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == "Открытый вопрос")
+            if (Convert.ToString(comboBox1.SelectedItem) == "Открытый вопрос")
                 openQ.Visible = true;
             else openQ.Visible = false;
-            if (comboBox1.SelectedItem == "Один ответ")
+            if (Convert.ToString(comboBox1.SelectedItem) == "Один ответ")
                 oneAns.Visible = true;
             else oneAns.Visible = false;
-            if (comboBox1.SelectedItem == "Несколько ответов")
+            if (Convert.ToString(comboBox1.SelectedItem) == "Несколько ответов")
                 fewAns.Visible = true;
             else fewAns.Visible = false;
 

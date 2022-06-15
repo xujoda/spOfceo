@@ -13,7 +13,6 @@ namespace diplom
         PowerPoint.Application objApp;
         PowerPoint.Presentations objPresSet;
         PowerPoint._Presentation objPres;
-        PowerPoint.SlideShowWindows objSSWs;
         PowerPoint.SlideShowSettings objSSS;
         private void ShowPresentation(string filename)//открытие презентации
         {

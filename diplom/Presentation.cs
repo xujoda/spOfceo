@@ -66,10 +66,13 @@ namespace diplom
                     string note = attributesSlides.attributesEl[i].ToString();
                     if (note == "System.Windows.Forms.RichTextBox")
                     {
+                        var fontConverter = new FontConverter();
+                        Font font = fontConverter.ConvertFromString(attributesSlides.attributesEl[i + 5]) as Font;
                         //            Parent                      Name,                                 Location                 
                         uploadTextBox(attributesSlides.attributesEl[i + 1], attributesSlides.attributesEl[i + 2], attributesSlides.attributesEl[i + 3],
                         // Text                                         font
-                        attributesSlides.attributesEl[i + 4], attributesSlides.attributesEl[i + 5]);
+                        attributesSlides.attributesEl[i + 4], font);
+                        Console.WriteLine("$$$ " + font.ToString());
                     }
                     if (note == "System.Windows.Forms.PictureBox")
                     {
@@ -81,8 +84,6 @@ namespace diplom
                     i++;
                 }
             }
-            Console.WriteLine(UploadedcountSlides);
-            Console.WriteLine(countSlides);
         }
 
         private void serialization(string filename)
@@ -127,7 +128,9 @@ namespace diplom
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Name.ToString());
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Location.ToString());
                         attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Text.ToString());
-                        attributesSlides.attributesEl.Add(slides.pSlides[i].Controls[j].Font.ToString());
+                        var fontConverter = new FontConverter();
+                        string font = fontConverter.ConvertToString(slides.pSlides[i].Controls[j].Font);
+                        attributesSlides.attributesEl.Add(font);
                     }
                     if (note == "System.Windows.Forms.PictureBox")
                     {
@@ -231,7 +234,7 @@ namespace diplom
             checkOff();
         }
 
-        private void uploadTextBox(string parent, string name, string location, string text, string font)
+        private void uploadTextBox(string parent, string name, string location, string text, Font font)
         {
             var g = Regex.Replace(location, @"[\{\}a-zA-Z=]", "").Split(',');
             Point pointResult = new Point(
@@ -245,6 +248,7 @@ namespace diplom
                 if (slides.pSlides[i].Name.ToString() == parent)
                     par = slides.pSlides[i];
             }
+            Console.WriteLine("!!!" + font);
             RichTextBox richTextBox = new RichTextBox()
             {
                 Name = name,
@@ -252,8 +256,9 @@ namespace diplom
                 BackColor = Color.WhiteSmoke,
                 Parent = par,
                 Location = pointResult,
-                //Font = font,
+                Font = font,
             };
+            //Console.WriteLine("## " + Convert.ToString(fontConverter.ConvertFromString(font)));
             richTextBox.MouseMove += RichTextBox_MouseMove;
             richTextBox.MouseUp += RichTextBox_MouseUp;
             richTextBox.MouseDown += RichTextBox_MouseDown;
@@ -360,7 +365,6 @@ namespace diplom
                         Parent = slides.pSlides[activeSlide],
                         SizeMode = PictureBoxSizeMode.StretchImage,
                     };
-                    Console.WriteLine(openFileDialog1.FileName);
                     picture.MouseDown += Picture_MouseDown;
                     picture.MouseUp += Picture_MouseUp;
                     picture.MouseMove += Picture_MouseMove;
@@ -382,7 +386,6 @@ namespace diplom
             {
                 PictureBox picture = sender as PictureBox;
                 pickedPB = picture.Name;
-                Console.WriteLine(pickedPB);
             }
         }
 
